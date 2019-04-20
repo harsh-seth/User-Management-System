@@ -1,0 +1,16 @@
+.container {
+    padding: 1%;
+}
+
+.box {
+    margin-bottom: 2%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.horizontal-centered {
+    text-align: center;
+}
