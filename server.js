@@ -1,6 +1,17 @@
-var express = require('express')
+const express = require('express')
+const joi = require('joi')
+const db = require('./db')
+
 var app = express()
-var joi = require('joi')
+const connection = db.connection
+
+// connection.connect((err) => {
+//     if(err) throw err
+//     connection.query('SELECT * FROM userData', (err, res) => {
+//         if(err) throw err
+//         console.log(res)
+//     })
+// })
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -15,7 +26,7 @@ const validators = {
         'username': joi.string().trim().required(),
         'password': joi.string().required(),
         'email': joi.string().trim().email().required(),
-        'phoneNumber': joi.string().trim().regex(/^^[1-9][0-9]{9,10}$/).required()
+        'phoneNumber': joi.string().trim().regex(/^^[1-9][0-9]{9}$/).required()
     },
     'email': {
         'email': joi.string().trim().email()
