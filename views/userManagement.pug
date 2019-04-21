@@ -20,22 +20,22 @@ html(lang="en")
                             td
                                 label(for="username") Username
                             td
-                                input#username(type="text" name="username" required)
+                                input#username(type="text" name="userName")
                         tr
                             td
                                 label(for="password") Password
                             td
-                                input#password(type="password", name="password" required)
+                                input#password(type="password", name="password")
                         tr
                             td
                                 label(for="email") Email
                             td
-                                input#email(type="email" name="email" required)
+                                input#email(type="email" name="emailId" required)
                         tr
                             td
                                 label(for="phoneNumber") Phone Number
                             td
-                                input#phoneNumber(type="text", name="phoneNumber" required)
+                                input#phoneNumber(type="text", name="phoneNo")
                         tr
                             td(colspan=2).horizontal-centered
                                 input(type="submit", value="Process User")
@@ -50,14 +50,14 @@ html(lang="en")
                     table.horizontal-centered
                         tr
                             td
-                                input#searchUserQuery(type="email", name="email" placeholder="Email ID of the User")
+                                input#searchUserQuery(type="email", name="emailId" placeholder="Email ID of the User")
                             td
                                 input(type="submit", value="Search")
                         tr
-                            td(colspan=2)
+                            td(colspan=2).horizontal-centered
                                 span.small (Leave blank to get all users)
                 if searchError
-                    span.danger #{searchError}
+                    span.small.danger #{searchError}
                 if users
                     table.horizontal-centered
                         tr
@@ -67,9 +67,9 @@ html(lang="en")
                             th Last Updated
                         each user in users
                             tr
-                                td #{user.username}
-                                td #{user.email}
-                                td #{user.phoneNumber}
+                                td #{user.userName}
+                                td #{user.emailId}
+                                td #{user.phoneNo}
                                 td #{user.dateTime}
 
             #deleteUserBox.box
@@ -77,7 +77,7 @@ html(lang="en")
                 table.horizontal-centered
                     tr
                         td
-                            input#deleteUserQuery(type="email", name="email" placeholder="Email ID of the User")
+                            input#deleteUserQuery(type="email", name="emailId" placeholder="Email ID of the User")
                         td
                             input#deleteUserBtn(type="button", value="Delete!")
                     tr#deleteUserConfirmationMessageRow(hidden)
