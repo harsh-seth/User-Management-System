@@ -1,7 +1,7 @@
 # User Management System
 
 ## About
-A small REST API server and a single page webapp consuming these endpoints. The project facilitates the creation and management of user. The project is written in `Node` and it interfaces with a `MySQL` instance.
+A small REST API server and a single page webapp consuming these endpoints. The project facilitates the creation and management of users. The project is written in `Node` and it interfaces with a `MySQL` instance.
 
 ## Features
 + Search the database for Users
