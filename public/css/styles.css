@@ -1,18 +1,10 @@
 body {
     background: lightblue;
+    padding-bottom: 2%;
 }
 
-.container {
-    padding: 1%;
-}
-
-.box {
-    margin-bottom: 3%;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
+.spaceBelow {
+    margin-bottom: 2%;
 }
 
 .horizontal-centered {
@@ -25,10 +17,8 @@ table.horizontal-centered {
     text-align: start;
 }
 
-.small {
-    font-size: small;
-}
-
-.danger {
-    color: red;
+.equallySpaced {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
 }

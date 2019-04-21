@@ -4,87 +4,90 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width", initial-scale="1.0")
         title User Management
-        link(href='/css/styles.css' rel='stylesheet')
         script(src="http://code.jquery.com/jquery-3.4.0.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css")
+        link(href='/css/styles.css' rel='stylesheet')
         script(src="/scripts/userManagement.js")
     body
-        #content.container.horizontal-centered
+        #content.container-fluid.text-center
             h1 User Management Portal
             if message
-                span.danger #{message}
-            #userDetailsBox.box
+                span.text-danger #{message}
+            #userDetailsBox.container-fluid.spaceBelow
                 h3 Create a User or Update details for an existing User
                 form(method="POST" action="/user")
-                    table.horizontal-centered
+                    table.horizontal-centered.table-condensed
                         tr
                             td
                                 label(for="username") Username
                             td
-                                input#username(type="text" name="userName")
+                                input#username(type="text" name="userName").form-control
                         tr
                             td
                                 label(for="password") Password
                             td
-                                input#password(type="password", name="password")
+                                input#password(type="password", name="password").form-control
                         tr
                             td
                                 label(for="email") Email
                             td
-                                input#email(type="email" name="emailId" required)
+                                input#email(type="email" name="emailId" required).form-control
                         tr
                             td
                                 label(for="phoneNumber") Phone Number
                             td
-                                input#phoneNumber(type="text", name="phoneNo")
+                                input#phoneNumber(type="text", name="phoneNo").form-control
                         tr
-                            td(colspan=2).horizontal-centered
-                                input(type="submit", value="Process User")
+                            td(colspan=2).text-center
+                                input(type="submit", value="Process User").btn
                 if createOrUpdateError
-                    span.danger #{createOrUpdateError}
+                    span.text-danger #{createOrUpdateError}
                 if createOrUpdateSuccess
                     span #{createOrUpdateSuccess}
 
-            #searchUserBox.box
+            #searchUserBox.container-fluid.spaceBelow
                 h3 Search for a User by email ID
                 form(action="/user", method="get")
-                    table.horizontal-centered
+                    table.horizontal-centered.table-condensed
                         tr
                             td
-                                input#searchUserQuery(type="email", name="emailId" placeholder="Email ID of the User")
+                                input#searchUserQuery(type="email", name="emailId" placeholder="Email ID of the User").form-control
                             td
-                                input(type="submit", value="Search")
+                                input(type="submit", value="Search").btn
                         tr
-                            td(colspan=2).horizontal-centered
+                            td(colspan=2).text-center
                                 span.small (Leave blank to get all users)
                 if searchError
-                    span.small.danger #{searchError}
+                    span.small.text-danger #{searchError}
                 if users
-                    table.horizontal-centered
-                        tr
-                            th Username
-                            th Email
-                            th Phone Number
-                            th Last Updated
-                        each user in users
-                            tr
-                                td #{user.userName}
-                                td #{user.emailId}
-                                td #{user.phoneNo}
-                                td #{user.dateTime}
+                    div.table-responsive
+                        table.horizontal-centered.table-condensed.table-bordered.table-hover
+                            thead
+                                th.text-center Username
+                                th.text-center Email
+                                th.text-center Phone Number
+                                th.text-center Last Updated
+                            each user in users
+                                tr.text-center
+                                    td #{user.userName}
+                                    td #{user.emailId}
+                                    td #{user.phoneNo}
+                                    td #{user.dateTime}
 
-            #deleteUserBox.box
+            #deleteUserBox.container-fluid.spaceBelow
                 h3 Delete User
-                table.horizontal-centered
+                table.horizontal-centered.table-condensed
                     tr
                         td
-                            input#deleteUserQuery(type="email", name="emailId" placeholder="Email ID of the User")
+                            input#deleteUserQuery(type="email", name="emailId" placeholder="Email ID of the User").form-control
                         td
-                            input#deleteUserBtn(type="button", value="Delete!")
-                    tr#deleteUserConfirmationMessageRow(hidden)
-                        td.danger(colspan=2) Are you sure? <br> This action cannot be reversed!
-                    tr#deleteUserConfirmationInputRow(hidden)
-                        td
-                            input#deleteUserYesBtn(type="button", value="Yes")
-                        td
-                            input#deleteUserNoBtn(type="button", value="Cancel")
+                            input#deleteUserBtn(type="button", value="Delete!").btn
+                    tr#deleteUserConfirmationMessageRow(hidden).bg-danger.text-center
+                        td(colspan=2).text-danger Are you sure? <br> This action cannot be reversed!
+                    tr#deleteUserConfirmationInputRow(hidden).bg-danger.text-center
+                        td(colspan=2)
+                            div.equallySpaced
+                                input#deleteUserYesBtn(type="button", value="Yes").btn
+                                input#deleteUserNoBtn(type="button", value="Cancel").btn
                 span#deleteUserMessage(hidden)

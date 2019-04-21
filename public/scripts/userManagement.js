@@ -23,11 +23,11 @@ $(document).ready(() => {
             url: '/user?emailId=' + emailId,
             type: 'DELETE',
             success: (res) => {
-                $('#deleteUserMessage').text(res.deleteSuccess).removeClass('danger').show()
+                $('#deleteUserMessage').text(res.deleteSuccess).removeClass('text-danger').show()
             },
             error: (res) => {
                 res = JSON.parse(res.responseText)
-                $('#deleteUserMessage').text(res.deleteError).addClass('danger').show()
+                $('#deleteUserMessage').text(res.deleteError).addClass('text-danger').show()
             }
         })
     })
