@@ -8,11 +8,83 @@ html(lang="en")
         script(src="http://code.jquery.com/jquery-3.4.0.js")
         script(src="/scripts/userManagement.js")
     body
-        #content(class="container horizontal-centered")
-            h1 User Managment Portal
-            #newUserBox.box
-                span New User form comes here
+        #content.container.horizontal-centered
+            h1 User Management Portal
+            if message
+                span.danger #{message}
+            #userDetailsBox.box
+                h3 Create a User or Update details for an existing User
+                form(method="POST" action="/user")
+                    table.horizontal-centered
+                        tr
+                            td
+                                label(for="username") Username
+                            td
+                                input#username(type="text" name="username" required)
+                        tr
+                            td
+                                label(for="password") Password
+                            td
+                                input#password(type="password", name="password" required)
+                        tr
+                            td
+                                label(for="email") Email
+                            td
+                                input#email(type="email" name="email" required)
+                        tr
+                            td
+                                label(for="phoneNumber") Phone Number
+                            td
+                                input#phoneNumber(type="text", name="phoneNumber" required)
+                        tr
+                            td(colspan=2).horizontal-centered
+                                input(type="submit", value="Process User")
+                if createOrUpdateError
+                    span.danger #{createOrUpdateError}
+                if createOrUpdateSuccess
+                    span #{createOrUpdateSuccess}
+
             #searchUserBox.box
-                span Search User bar and content comes here
-            #counter.box
-                span Total Page Views: #{pageViews}
+                h3 Search for a User by email ID
+                form(action="/user", method="get")
+                    table.horizontal-centered
+                        tr
+                            td
+                                input#searchUserQuery(type="email", name="email" placeholder="Email ID of the User")
+                            td
+                                input(type="submit", value="Search")
+                        tr
+                            td(colspan=2)
+                                span.small (Leave blank to get all users)
+                if searchError
+                    span.danger #{searchError}
+                if users
+                    table.horizontal-centered
+                        tr
+                            th Username
+                            th Email
+                            th Phone Number
+                            th Last Updated
+                        each user in users
+                            tr
+                                td #{user.username}
+                                td #{user.email}
+                                td #{user.phoneNumber}
+                                td #{user.dateTime}
+
+            #deleteUserBox.box
+                h3 Delete User
+                table.horizontal-centered
+                    tr
+                        td
+                            input#deleteUserQuery(type="email", name="email" placeholder="Email ID of the User")
+                        td
+                            input#deleteUserBtn(type="button", value="Delete!")
+                    tr#deleteUserConfirmationMessageRow(hidden)
+                        td.danger(colspan=2) Are you sure? <br> This action cannot be reversed!
+                    tr#deleteUserConfirmationInputRow(hidden)
+                        td
+                            input#deleteUserYesBtn(type="button", value="Yes")
+                        td
+                            input#deleteUserNoBtn(type="button", value="Cancel")
+                span#deleteUserMessage(hidden)

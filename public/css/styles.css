@@ -3,7 +3,7 @@
 }
 
 .box {
-    margin-bottom: 2%;
+    margin-bottom: 3%;
 }
 
 .row {
@@ -13,4 +13,18 @@
 
 .horizontal-centered {
     text-align: center;
+}
+
+table.horizontal-centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: start;
+}
+
+.small {
+    font-size: small;
+}
+
+.danger {
+    color: red;
 }
