@@ -42,15 +42,19 @@ A small REST API server and a single page webapp consuming these endpoints. The 
 
 + The messages to display to the user were standardized and made reusable. It allows for a consistent UI/UX
 
-+ The development process for the application was as follows:
++ The development process for the application closely resembles the MVC design principles and was as follows:
     + Designing and creating endpoints capable of accepting inputs and returning token responses
     + Created webpage, decided upon the metaphors for the endpoints and implemented the different interfaces to the server (i.e. the Create/Modify User form, the Search User form, the Delete User form)
     + Implemented form input validations and finalized the different possible outcome states for the webpage
-    + Set up database connections
+    + Set up database connections with a dummy database having the same schema as the production one
     + Replaced the dummy logic with the actual business logic (i.e. database operations)
     + Refined and finalized the look of the webpage by incorporating Bootstrap design 
+    + Replaced the database credentials with the production database. 
+    + Performed a round of tests to see if all features work, without changing the state of the database
 
 + The database connection configuration was written in a separate file named `db.js`. This is isolate the database connection secrets from the main project. Should the user wish to do so, the secrets can be saved as environment variables or in a text file. `db.js` can then be modified to pick up the values from those sources instead, without worrying about the main project.
+
++ Initially, all database connection and operations testing was done with a local instance of `MySQL` having the same schema as the online one. Once the application was finalized, the connection parameters were changed to query from the online database instead. 
 
 + To learn how to interface the database with the application, the official documentation of the `mysql` module for `Node` was consulted.
 
